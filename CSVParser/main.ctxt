@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=main
+comment1.params=parser\ name1\ name2
+comment1.target=void\ getExportName(org.apache.commons.csv.CSVParser,\ java.lang.String,\ java.lang.String)
+comment2.params=parser\ exportItem
+comment2.target=void\ numberOfExporters(org.apache.commons.csv.CSVParser,\ java.lang.String)
+comment3.params=parser\ money
+comment3.target=void\ bigExporters(org.apache.commons.csv.CSVParser,\ java.lang.String)
+comment4.params=
+comment4.target=void\ test()
+numComments=5

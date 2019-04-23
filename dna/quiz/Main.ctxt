@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Main
+comment1.params=strand
+comment1.target=Main(java.lang.String)
+comment2.params=
+comment2.target=void\ main()
+comment3.params=data
+comment3.target=void\ parseGeneFromStrand(java.lang.String)
+comment4.params=
+comment4.target=int\ longerThen60()
+comment5.params=data\ startSearchIndex
+comment5.target=int\ findEnd(java.lang.String,\ int)
+comment6.params=gen
+comment6.target=double\ getCG(java.lang.String)
+comment7.params=gen
+comment7.target=int\ howManyCTG(java.lang.String)
+comment8.params=ration
+comment8.target=int\ howManyCGRation(double)
+comment9.params=
+comment9.target=int\ getLongestGene()
+numComments=10
