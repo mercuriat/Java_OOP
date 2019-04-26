@@ -33,5 +33,53 @@ public class LogAnalyzer
          }
      }
      
+     public int countUniqueIPs(){
+         ArrayList<String> uniqueIp = new ArrayList<String>();
+         for (LogEntry le : records) {
+             String ip = le.getIpAddress();
+             if (!uniqueIp.contains(ip)){
+                 uniqueIp.add(ip);
+             }
+         }
+         return uniqueIp.size();
+     }
+          
+     public void printAllHigherThanNum(int num){
+         for (LogEntry le : records) {
+             int statusCode = le.getStatusCode();
+             if (statusCode > num){
+                 System.out.println(le);
+             }
+         }     
+     }
      
+     public void uniqueIPVisitsOnDay(String someday){
+         ArrayList<String> uniqueIp = new ArrayList<String>();
+         for (LogEntry le : records) {
+             String ip = le.getIpAddress();
+             String date = le.getAccessTime().toString();
+             //System.out.println(date);
+             if ((!uniqueIp.contains(ip)) && (date.contains(someday))){
+                 uniqueIp.add(ip);
+                 System.out.println(le);
+             }
+             
+         }   
+         System.out.println(uniqueIp.size());
+     }
+     
+     public void countUniqueIPsInRange(int low, int high){
+         ArrayList<String> uniqueIp = new ArrayList<String>();
+         for (LogEntry le : records) {
+             String ip = le.getIpAddress();
+             int statusCode = le.getStatusCode();
+             //System.out.println(date);
+             if ((!uniqueIp.contains(ip)) && (statusCode >= low) && (statusCode <= high)){
+                 uniqueIp.add(ip);
+                 System.out.println(le);
+             }
+         }
+         System.out.println(uniqueIp.size());
+     }         
 }
+
