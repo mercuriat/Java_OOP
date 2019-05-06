@@ -3,6 +3,12 @@ import edu.duke.*;
 import java.io.*;
 
 public class VigenereBreaker {
+    private StringBuilder Alphabet;
+    
+    public VigenereBreaker(){
+        Alphabet = new StringBuilder("abcdefghijklmnopqrstuvwxyz");
+    }
+    
     public String sliceString(String message, int whichSlice, int totalSlices) {
         StringBuilder sliceMessage = new StringBuilder();
         for(int i = whichSlice; i < message.length(); i += totalSlices){
@@ -26,7 +32,7 @@ public class VigenereBreaker {
         return key;
     }
 
-    public String breakVigenere(int klength, String encrypted, char commonletter) {
+    public String[] breakVigenere(int klength, String encrypted, char commonletter) {
         //WRITE YOUR CODE HERE
         int[] key = tryKeyLength(encrypted, klength, commonletter);
 
@@ -40,7 +46,14 @@ public class VigenereBreaker {
         //for(int i = 0; i < klength; i++){
         //    System.out.println(key[i]);
         //}
-        return decrypted;
+        
+        StringBuilder keyWord = new StringBuilder();
+        for(int i : key){
+            keyWord.append(Alphabet.charAt(i));
+        }
+        
+        String[] decryptedKey = {keyWord.toString(), decrypted};
+        return decryptedKey;
     }
     
     
@@ -65,7 +78,7 @@ public class VigenereBreaker {
         return totalWord;
     }
     
-    public String breakForLanguage(String encrypted, HashSet<String> dictionary, int trigger){
+    public String[] breakForLanguage(String encrypted, HashSet<String> dictionary, int trigger){
         int maxLength = 100;
         int maxWord = 0;
         int kLength = 0;
@@ -130,8 +143,8 @@ public class VigenereBreaker {
         HashMap<String, Integer> allLangsCount = new HashMap<String, Integer>();
         for(String language : languages.keySet()){
             HashSet<String> dictionary = languages.get(language);
-            String decrypted = breakForLanguage(message, dictionary, 0);
-            int wordNumber = countWords(decrypted, dictionary);
+            String[] decryptedKey = breakForLanguage(message, dictionary, 0);
+            int wordNumber = countWords(decryptedKey[1], dictionary);
             allLangsCount.put(language, wordNumber);
         }
         
@@ -149,8 +162,9 @@ public class VigenereBreaker {
          + max);
         
         HashSet<String> dictionary = languages.get(finalLangs);
-        String decrypted = breakForLanguage(message, dictionary, 1);
-        System.out.println(decrypted.substring(0,200));
+        String[] decryptedKey = breakForLanguage(message, dictionary, 1);
+        System.out.println(decryptedKey[1].substring(0,200));
+        System.out.println("The key is " + decryptedKey[0]);
     }
     
     
